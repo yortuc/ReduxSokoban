@@ -1,0 +1,33 @@
+{
+  "name": "ReactSokoban",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "immutable": "^3.7.5",
+    "install": "^0.1.8",
+    "npm": "^3.3.3",
+    "react": "^0.13.3",
+    "react-redux": "^3.0.0"
+  },
+  "devDependencies": {
+    "reactify": "^1.1.1",
+    "browserify": "^11.1.0",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-eslint": "^1.0.0",
+    "gulp-open": "^1.0.0",
+    "babel": "^5.8.23",
+    "babelify": "^6.3.0",
+    "gulp-minify-html": "^1.0.4",
+    "gulp-sourcemaps": "^1.5.2",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
