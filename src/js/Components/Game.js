@@ -5,7 +5,7 @@ class Game extends Component {
     constructor() {
         super();
 
-        // Default state.
+        // default state
         this.state = {
             tick: 0,
             ctx: null

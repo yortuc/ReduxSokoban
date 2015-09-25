@@ -5,7 +5,6 @@ class Box extends Component {
     constructor() {
         super();
         this.state = {
-            // Default state here.
         }
     }
 
@@ -17,8 +16,6 @@ class Box extends Component {
 
     	return null;
     }
-
-    //... Everything else  
 }
 
 export default Box;

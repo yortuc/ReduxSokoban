@@ -4,7 +4,6 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 
-
 const initialState = {
 	level: `1,1,1,1,1,1,1,1,1
 			1,0,0,0,0,0,0,0,1
@@ -46,35 +45,34 @@ function reactSokoban (state, action) {
 	}
 };
 
-function pushState(state){
-	appStates = appStates.splice(0, stateIndex+1);
-	appStates.push(state);
-	stateIndex++;
-}
-
 function tryToMove(state, dm){
+	/*
+		reducer function
+		must be a pure function.
+		there will be no mutations on state.
+	*/
 
 	var levelArr = state.level.replace(/\,/gi, '').split('\n').map(s=> {
         return s.replace(/\s/gi, '')
     });
 
-	// oyuncunun gitmek istediği tile
-	var finalX = state.playerX + (dm.dx || 0);	// immutable
-	var finalY = state.playerY + (dm.dy || 0); 		// immutable
-	var finalTile = levelArr[finalY][finalX];		// immutable
+	// target tile
+	var finalX = state.playerX + (dm.dx || 0);
+	var finalY = state.playerY + (dm.dy || 0);
+	var finalTile = levelArr[finalY][finalX];
 
-	// tile'ın gidilen yöne göre arkasında kalan tile
+	// tile behind target
 	var arkasi = {
 		x: finalX + (dm.dx || 0), 
 		y: finalY + (dm.dy || 0)
 	};
 
-	// hareket serbest 
+	// free to move
 	if( finalTile === "0" || finalTile === "3" || 
 		( finalTile === "2" && levelArr[arkasi.y][arkasi.x] === "0" ) || 
 		( finalTile === "2" && levelArr[arkasi.y][arkasi.x] === "3" ) ){
 
-		// ittir
+		// slide
 		if ( finalTile === "2" ){
 			if(levelArr[arkasi.y][arkasi.x] === "0" || levelArr[arkasi.y][arkasi.x] === "3" ){
 				var arkaSon = levelArr[arkasi.y][arkasi.x] === "3" ? "4" : "2";
@@ -97,6 +95,12 @@ function updateRow(row, index, newValue){
 	return row.substring(0,index) + newValue + row.substring(index+1, row.length);
 }
 
+function pushState(state){
+	appStates = appStates.splice(0, stateIndex+1);
+	appStates.push(state);
+	stateIndex++;
+}
+
 React.render( <Provider store={store}>
 			    {() => <SokobanGame />}
 			  </Provider>, document.getElementById('content') );
@@ -116,6 +120,4 @@ window.addEventListener("keypress", (e)=>{
         case 115:
             store.dispatch({ type: 'PLAYER_MOVE_REQUEST', dm: {dy: 1}});
     }
-
-    //console.log(e.keyCode);
 });
