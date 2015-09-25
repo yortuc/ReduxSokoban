@@ -1,0 +1,5 @@
+{
+  "name": "ReduxSokoban",
+  "description": "sokoban implementation with Redux and React",
+  "repository": "https://github.com/yortuc/ReduxSokoban"
+}
