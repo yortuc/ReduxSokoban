@@ -8,8 +8,10 @@ class Sprite extends Component {
 
     render() { 
     	var ctx = this.props.ctx;
+		ctx.beginPath();
+		ctx.arc(this.props.x+25, this.props.y+25, 25, 0, 2 * Math.PI, false);
 		ctx.fillStyle= this.props.color || "#FF0000";
-		ctx.fillRect(this.props.x,this.props.y,50,50);
+		ctx.fill();
 
     	return null;
     }

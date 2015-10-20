@@ -5,8 +5,7 @@ import SokobanGame from './SokobanGame';
 function mapStateToProps(state) {
   return {
     level: state.level,
-    playerX: state.playerX,
-    playerY: state.playerY
+    id: state.id, 
   };
 }
 

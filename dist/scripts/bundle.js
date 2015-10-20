@@ -23025,57 +23025,7 @@ function pick(obj, fn) {
 }
 
 module.exports = exports["default"];
-},{}],"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/Components/Box.js":[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var Box = (function (_Component) {
-    _inherits(Box, _Component);
-
-    function Box() {
-        _classCallCheck(this, Box);
-
-        _get(Object.getPrototypeOf(Box.prototype), "constructor", this).call(this);
-        this.state = {};
-    }
-
-    _createClass(Box, [{
-        key: "render",
-        value: function render() {
-            var ctx = this.props.ctx;
-
-            ctx.fillStyle = this.props.color || "#FF0000";
-            ctx.fillRect(this.props.x, this.props.y, this.props.width || 50, this.props.height || 50);
-
-            return null;
-        }
-    }]);
-
-    return Box;
-})(_react.Component);
-
-exports["default"] = Box;
-module.exports = exports["default"];
-
-
-},{"react":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/node_modules/react/react.js"}],"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/Components/Game.js":[function(require,module,exports){
+},{}],"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/Components/Game.js":[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -23104,9 +23054,7 @@ var Game = (function (_Component) {
 
         _get(Object.getPrototypeOf(Game.prototype), "constructor", this).call(this);
 
-        // default state
         this.state = {
-            tick: 0,
             ctx: null
         };
     }
@@ -23116,19 +23064,15 @@ var Game = (function (_Component) {
         value: function componentDidMount() {
             var c = document.getElementById("game");
             var ctx = c.getContext("2d");
-            ctx.fillStyle = "#FF0000";
 
-            this.setState({ ctx: ctx });
+            this.setState({
+                ctx: ctx
+            });
         }
     }, {
         key: "mapChildren",
         value: function mapChildren() {
-            // henüz comp. mount olmadığı için context oluşmamış.
-            // bu durumda child'ları render etme.
-            if (!this.state.ctx) return null;
-
-            this.state.ctx.clearRect(0, 0, 640, 480);
-
+            var ind = 0;
             return _reactAddons2["default"].Children.map(this.props.children, (function (child) {
                 return _reactAddons2["default"].addons.cloneWithProps(child, {
                     name: this.props.name,
@@ -23139,11 +23083,10 @@ var Game = (function (_Component) {
     }, {
         key: "render",
         value: function render() {
-            console.log("Game.render");
             return _reactAddons2["default"].createElement(
                 "canvas",
-                { id: "game", width: "900", height: "600" },
-                this.mapChildren()
+                { id: "game", width: this.props.width, height: this.props.height },
+                this.state.ctx ? this.mapChildren() : []
             );
         }
     }]);
@@ -23175,8 +23118,7 @@ var _SokobanGame2 = _interopRequireDefault(_SokobanGame);
 function mapStateToProps(state) {
   return {
     level: state.level,
-    playerX: state.playerX,
-    playerY: state.playerY
+    id: state.id
   };
 }
 
@@ -23190,7 +23132,7 @@ exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProp
 module.exports = exports['default'];
 
 
-},{"./SokobanGame":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/Components/SokobanGame.js","react":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/node_modules/react/react.js","react-redux":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/node_modules/react-redux/lib/index.js"}],"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/Components/SokobanGame.js":[function(require,module,exports){
+},{"./SokobanGame":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/Components/SokobanGame.js","react":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/node_modules/react/react.js","react-redux":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/node_modules/react-redux/lib/index.js"}],"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/Components/Rectangle.js":[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -23211,17 +23153,120 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Box = require('./Box');
+var _resourceLoader = require('../resourceLoader');
 
-var _Box2 = _interopRequireDefault(_Box);
+var _resourceLoader2 = _interopRequireDefault(_resourceLoader);
+
+var Rectangle = (function (_Component) {
+    _inherits(Rectangle, _Component);
+
+    function Rectangle() {
+        _classCallCheck(this, Rectangle);
+
+        _get(Object.getPrototypeOf(Rectangle.prototype), 'constructor', this).apply(this, arguments);
+    }
+
+    _createClass(Rectangle, [{
+        key: 'shouldComponentUpdate',
+        value: function shouldComponentUpdate(nextProps, nextState) {
+            // update only if type prop is changed
+            return this.props.type != nextProps.type;
+        }
+    }, {
+        key: 'clearSelf',
+        value: function clearSelf() {
+            // clear the rectangle on canvas
+            this.props.ctx.clearRect(this.props.x, this.props.y, 50, 50);
+        }
+    }, {
+        key: 'drawImage',
+        value: function drawImage(imageLabel) {
+            var size = 50;
+            this.props.ctx.drawImage(_resourceLoader2['default'].images[imageLabel], this.props.x, this.props.y, size, size);
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            this.clearSelf();
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+
+            this.clearSelf();
+
+            switch (this.props.type) {
+                case "$":
+                    this.drawImage("box");
+                    break;
+
+                case "#":
+                    this.drawImage("wall");
+                    break;
+
+                case "*":
+                    this.drawImage("box_done");
+                    break;
+
+                case ".":
+                    this.drawImage("pad");
+                    break;
+
+                case "@":
+                    this.props.ctx.fillStyle = "#eee";
+                    this.props.ctx.fillRect(this.props.x, this.props.y, 50, 50);
+                    this.drawImage("player");
+                    break;
+
+                case " ":
+                    this.props.ctx.fillStyle = "#eee";
+                    this.props.ctx.fillRect(this.props.x, this.props.y, 50, 50);
+                    break;
+
+                case "+":
+                    this.drawImage("pad");
+                    this.drawImage("player");
+            }
+
+            return null;
+        }
+    }]);
+
+    return Rectangle;
+})(_react.Component);
+
+exports['default'] = Rectangle;
+module.exports = exports['default'];
+
+
+},{"../resourceLoader":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/resourceLoader.js","react":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/node_modules/react/react.js"}],"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/Components/SokobanGame.js":[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Rectangle = require('./Rectangle');
+
+var _Rectangle2 = _interopRequireDefault(_Rectangle);
 
 var _Game = require('./Game');
 
 var _Game2 = _interopRequireDefault(_Game);
-
-var _Sprite = require('./Sprite');
-
-var _Sprite2 = _interopRequireDefault(_Sprite);
 
 var SokobanGame = (function (_Component) {
     _inherits(SokobanGame, _Component);
@@ -23235,26 +23280,32 @@ var SokobanGame = (function (_Component) {
     _createClass(SokobanGame, [{
         key: 'createMap',
         value: function createMap() {
-            var level = this.props.level.replace(/\,/gi, '').split('\n').map(function (s) {
-                return s.replace(/\s/gi, '');
-            });
+            var height,
+                width = -1;
+            var rows = this.props.level;
+            var level_id = this.props.id;
 
             var tiles = [];
-            var bgcolor = ["#fff", "#e5e5e5"];
-            var color = [null, "black", "green", "yellow", "blue"];
             var ind = 0;
+            var foundWall = false;
 
-            for (var i = 0; i < level.length; i++) {
-                var satir = level[i];
+            for (var i = 0; i < rows.length; i++) {
+                var row = rows[i];
 
-                for (var j = 0; j < satir.length; j++) {
-                    var renk = satir[j] === "0" ? bgcolor[(i + j) % 2] : color[satir[j]];
-
-                    tiles.push(_react2['default'].createElement(_Box2['default'], { key: ++ind, x: j * 50, y: i * 50, color: renk }));
+                for (var j = 0; j < row.length; j++) {
+                    if (row[j] === "#") foundWall = true;
+                    if (foundWall) tiles.push(_react2['default'].createElement(_Rectangle2['default'], { key: level_id + '_' + ++ind, x: j * 50, y: i * 50, type: row[j] }));
                 }
+
+                if (row.length > width) width = row.length;
+                foundWall = false;
             }
 
-            return tiles;
+            return {
+                tiles: tiles,
+                width: width * 50,
+                height: rows.length * 50
+            };
         }
     }, {
         key: 'handleUndo',
@@ -23262,23 +23313,36 @@ var SokobanGame = (function (_Component) {
             this.props.dispatch({ type: 'UNDO' });
         }
     }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate() {
+            // check if level is completed
+            var freeBoxCount = this.props.level.reduce(function (prevRow, currRow) {
+                return prevRow + currRow.reduce(function (prevCell, currCell) {
+                    return prevCell + (currCell === "$" ? 1 : 0);
+                }, 0);
+            }, 0);
+
+            if (freeBoxCount === 0) {
+                this.props.dispatch({ type: 'NEXT_LEVEL' });
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
-            console.log("game render", this.props.canUndo);
-            this.createMap();
+            var map = this.createMap();
+
             return _react2['default'].createElement(
                 'div',
                 null,
                 _react2['default'].createElement(
                     _Game2['default'],
-                    null,
-                    this.createMap(),
-                    _react2['default'].createElement(_Sprite2['default'], { color: 'red', x: this.props.playerX * 50, y: this.props.playerY * 50 })
+                    { width: map.width, height: map.height },
+                    map.tiles
                 ),
                 _react2['default'].createElement(
                     'button',
                     { onClick: this.handleUndo.bind(this) },
-                    'Geri Al'
+                    'Undo'
                 )
             );
         }
@@ -23291,55 +23355,260 @@ exports['default'] = SokobanGame;
 module.exports = exports['default'];
 
 
-},{"./Box":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/Components/Box.js","./Game":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/Components/Game.js","./Sprite":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/Components/Sprite.js","react":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/node_modules/react/react.js"}],"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/Components/Sprite.js":[function(require,module,exports){
+},{"./Game":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/Components/Game.js","./Rectangle":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/Components/Rectangle.js","react":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/node_modules/react/react.js"}],"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/levelLoader.js":[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+	value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _levelsSet1 = require('../levels/set1');
+
+var _levelsSet12 = _interopRequireDefault(_levelsSet1);
+
+var set;
+var levelIndex = 0;
+
+function parseLevelFile(content) {
+	//	return levelSet = {title..., [levels]}
+
+	var levels = [];
+	var rows = content.split('\n');
+
+	var title = rows[0];
+	var copyright = rows[2];
+	var email = rows[3];
+	var start = 9;
+	var level, parsed;
+
+	for (var i = 9; i < rows.length; i++) {
+		if (rows[i][0] === ";") {
+			level = rows.slice(start, i);
+			parsed = parseLevelText(level);
+			levels.push(parsed);
+			start = i + 2;
+		}
+	}
+
+	return {
+		title: title,
+		copyright: copyright,
+		email: email,
+		levels: levels
+	};
+}
+
+function parseLevelText(levelArr) {
+
+	// return state = [[row1],[row2]];
+
+	var level = levelArr.map(function (row) {
+		return row.split('');
+	});
+
+	return {
+		id: Math.floor(Math.random() * 10000),
+		level: level
+	};
+}
+
+function getNextLevel(cb) {
+	set = set || parseLevelFile(_levelsSet12['default']);
+	var level = set.levels[levelIndex++];
+
+	console.log(level);
+
+	return level;
+}
+
+exports['default'] = {
+	getNextLevel: getNextLevel
+};
+module.exports = exports['default'];
+
+
+},{"../levels/set1":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/levels/set1.js"}],"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/levelManager.js":[function(require,module,exports){
+// validate a move request (dm)
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+function tryToMove(state, dm) {
+
+	var player = getPlayer(state);
+	var target = getTile(state, player, dm);
+	var back = getTile(state, target, dm);
+
+	// free to move there
+	if (target.type === " " || target.type === ".") {
+		var player_moved = movePlayer(state, player, dm);
+		return player_moved;
+	}
+
+	// move the box
+	if ((back.type === " " || back.type === ".") && (target.type === "$" || target.type === "*")) {
+		var box_moved = moveBox(state, player, target, back, dm);
+		return box_moved;
+	}
+
+	return state;
+}
+
+// get player position and type
+function getPlayer(state) {
+
+	var type, posX, posY;
+
+	state.level.map(function (row, y) {
+		row.map(function (cell, x) {
+			if (cell === "@" || cell === "+") {
+				posX = x;
+				posY = y;
+				type = cell;
+			}
+		});
+	});
+
+	return { x: posX, y: posY, type: type };
+}
+
+// get the tile at the target x,y position
+function getTile(state, target, dm) {
+	var tile = {
+		x: target.x + (dm.dx || 0),
+		y: target.y + (dm.dy || 0),
+		type: null
+	};
+
+	if (tile.y < state.level.length && tile.y > 0 && tile.x > 0) {
+		tile.type = state.level[tile.y][tile.x];
+	}
+
+	return tile;
+}
+
+// update player pos
+function movePlayer(state, position, dm) {
+
+	var newPlayerPos = {
+		x: position.x + (dm.dx || 0),
+		y: position.y + (dm.dy || 0)
+	};
+
+	var tile = state.level[position.y][position.x]; // the tile currently represens player
+	var targetTile = state.level[newPlayerPos.y][newPlayerPos.x]; // whats now on the target
+	var updateTile, oldTile;
+
+	if (targetTile === " ") updateTile = "@"; // just player
+	if (targetTile === ".") updateTile = "+"; // player on goal square
+
+	if (tile === "@") oldTile = " ";
+	if (tile === "+") oldTile = ".";
+
+	var player_moved = updateCell(state.level, newPlayerPos, updateTile);
+	player_moved = updateCell(player_moved, position, oldTile);
+
+	return {
+		level: player_moved
+	};
+}
+
+// update box position
+function moveBox(state, player, box, target, dm) {
+
+	var tile = box.type;
+	var targetTile = target.type;
+	var updateTarget, updateTile, updatePlayer;
+
+	if (tile === "$") {
+		updateTile = "@";
+		if (targetTile === ".") updateTarget = "*";
+		if (targetTile === " ") updateTarget = "$";
+	}
+
+	if (tile === "*") {
+		updateTile = "+";
+		if (targetTile === ".") updateTarget = "*";
+		if (targetTile === " ") updateTarget = "$";
+	}
+
+	if (player.type === "@") updatePlayer = " ";
+	if (player.type === "+") updatePlayer = ".";
+
+	var playerUpdate = updateCell(state.level, player, updatePlayer);
+	var targetUpdated = updateCell(playerUpdate, target, updateTarget);
+	var tileUpdated = updateCell(targetUpdated, box, updateTile);
+
+	return {
+		level: tileUpdated
+	};
+}
+
+// immutable cell update
+function updateCell(level, pos, newVal) {
+	var row = level[pos.y];
+	var newRow = [].concat(row.slice(0, pos.x), newVal, row.slice(pos.x + 1));
+	var newLevel = [].concat(level.slice(0, pos.y), [newRow], level.slice(pos.y + 1));
+
+	return newLevel;
+}
+
+exports["default"] = {
+	tryToMove: tryToMove
+};
+module.exports = exports["default"];
+
+
+},{}],"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/resourceLoader.js":[function(require,module,exports){
+// load resources (images)
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports["default"] = {
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+    images: {},
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+    loadImages: function loadImages(sources, callback) {
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+        var loadedImages = 0;
+        var numImages = 0;
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var Sprite = (function (_Component) {
-    _inherits(Sprite, _Component);
-
-    function Sprite() {
-        _classCallCheck(this, Sprite);
-
-        _get(Object.getPrototypeOf(Sprite.prototype), "constructor", this).call(this);
-    }
-
-    _createClass(Sprite, [{
-        key: "render",
-        value: function render() {
-            var ctx = this.props.ctx;
-            ctx.fillStyle = this.props.color || "#FF0000";
-            ctx.fillRect(this.props.x, this.props.y, 50, 50);
-
-            return null;
+        for (var src in sources) {
+            numImages++;
         }
-    }]);
 
-    return Sprite;
-})(_react.Component);
-
-exports["default"] = Sprite;
+        for (var src in sources) {
+            this.images[src] = new Image();
+            this.images[src].onload = function () {
+                if (++loadedImages >= numImages) {
+                    callback(this.images);
+                }
+            };
+            this.images[src].src = sources[src];
+        }
+    }
+};
 module.exports = exports["default"];
 
 
-},{"react":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/node_modules/react/react.js"}],"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/main.js":[function(require,module,exports){
+},{}],"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/levels/set1.js":[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var levelSet1 = "; 100 Boxes\n\n; Copyright: FranÁois Marques\n; E-Mail: sokoban@online.fr\n; Web Site: http://sokoban.online.fr\n;\n; This collection includes 10 small levels of 10 packages each. It is intended for\n; the expert who has a few (many) hours in front of them.\n\n#########\n#  @ $ .#\n#########\n; level 1\n\n    #######\n    #  @ .#\n#####$$####\n#      #\n# .    #\n########\n; level 1\n\n   ####\n####  ##\n#   $  #\n#  *** #\n#  . . ##\n## * *  #\n ##***  #\n  # $ ###\n  # @ #\n  #####\n; Connection\n\n #########\n #   #   #\n # @ #   #\n##$**$**$#\n#  #. .# ##\n#  .*$*.  #\n#         #\n###########\n; Two rooms\n\n  #####\n  #   #\n  #   #\n### * ###\n#  *.*  #\n#  *.*  #\n#  *.*  #\n###$$$###\n  # @ #\n  #####\n; Fill the hall\n\n  ####\n### @#####\n#  $$$   #\n# **.**  #\n##     ###\n# .***. #\n#       #\n#########\n; Two lines\n\n #######\n #  @  #\n #*$*$*#\n # .$. #\n##. # .##\n#  *$*  #\n#   *   #\n#  ###  #\n#### ####\n; Dual\n\n##### ####\n#   ###  #\n# $     @#\n##$*****$##\n# $.....$ #\n#   #     #\n########  #\n       ####\n; Zip\n\n ####\n##  #####\n#  $  $ #\n# $*..* ##\n#  *$$.  #\n#@ *.*.  #\n####   ###\n   #####\n; The little dog\n\n  ####\n  #  ####\n ##@ $  #\n # *.*  #\n## * * ##\n#  * * #\n#  *** #\n##     #\n ####  #\n    ####\n; Opened circle\n\n  ####\n  # @##\n  #$$ #\n### * ###\n#  .*.$ #\n#  .*.  #\n# #.*.# #\n# $$$   #\n###   ###\n  ##  #\n   ####\n; Jour J\n\n  #####\n  # . #\n###$ $###\n#  $ $  #\n# . . . #\n### * ###\n  # * #\n  #$.$#\n  # . #\n  #$.$#\n  # + #\n  #####";
+
+exports["default"] = levelSet1;
+module.exports = exports["default"];
+
+
+},{}],"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/main.js":[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -23356,26 +23625,33 @@ var _redux = require('redux');
 
 var _reactRedux = require('react-redux');
 
-var initialState = {
-	level: '1,1,1,1,1,1,1,1,1\n\t\t\t1,0,0,0,0,0,0,0,1\n\t\t\t1,0,0,0,3,0,0,0,1\n\t\t\t1,0,0,0,1,0,0,0,1\n\t\t\t1,0,0,1,1,1,2,0,1\n\t\t\t1,0,2,0,1,0,0,0,1\n\t\t\t1,0,0,0,3,0,0,0,1\n\t\t\t1,0,0,0,0,0,0,0,1\n\t\t\t1,1,1,1,1,1,1,1,1',
-	playerX: 1,
-	playerY: 6
-};
+var _jsResourceLoader = require('./js/resourceLoader');
 
+var _jsResourceLoader2 = _interopRequireDefault(_jsResourceLoader);
+
+var _jsLevelManager = require('./js/levelManager');
+
+var _jsLevelManager2 = _interopRequireDefault(_jsLevelManager);
+
+var _jsLevelLoader = require('./js/levelLoader');
+
+var _jsLevelLoader2 = _interopRequireDefault(_jsLevelLoader);
+
+var initialState;
 var appStates = [initialState];
 var stateIndex = 0;
+var store = undefined;
 
-var store = (0, _redux.createStore)(reactSokoban, initialState);
-
+// main reducer
 function reactSokoban(state, action) {
 
 	switch (action.type) {
 		case 'UNDO':
-			return appStates.length > 1 ? appStates[--stateIndex] : appStates[stateIndex];
+			return stateIndex > 0 ? appStates[--stateIndex] : appStates[stateIndex];
 			break;
 
 		case 'PLAYER_MOVE_REQUEST':
-			var nextState = tryToMove(state, action.dm);
+			var nextState = _jsLevelManager2['default'].tryToMove(state, action.dm);
 
 			if (nextState !== state) {
 				pushState(nextState);
@@ -23384,73 +23660,33 @@ function reactSokoban(state, action) {
 			return nextState;
 			break;
 
+		case 'NEXT_LEVEL':
+			return _jsLevelLoader2['default'].getNextLevel();
+			break;
+
 		default:
 			return state;
 	}
 };
 
-function tryToMove(state, dm) {
-	/*
- 	reducer function
- 	must be a pure function.
- 	there will be no mutations on state.
- */
-
-	var levelArr = state.level.replace(/\,/gi, '').split('\n').map(function (s) {
-		return s.replace(/\s/gi, '');
-	});
-
-	// target tile
-	var finalX = state.playerX + (dm.dx || 0);
-	var finalY = state.playerY + (dm.dy || 0);
-	var finalTile = levelArr[finalY][finalX];
-
-	// tile behind target
-	var arkasi = {
-		x: finalX + (dm.dx || 0),
-		y: finalY + (dm.dy || 0)
-	};
-
-	// free to move
-	if (finalTile === "0" || finalTile === "3" || finalTile === "2" && levelArr[arkasi.y][arkasi.x] === "0" || finalTile === "2" && levelArr[arkasi.y][arkasi.x] === "3") {
-
-		// slide
-		if (finalTile === "2") {
-			if (levelArr[arkasi.y][arkasi.x] === "0" || levelArr[arkasi.y][arkasi.x] === "3") {
-				var arkaSon = levelArr[arkasi.y][arkasi.x] === "3" ? "4" : "2";
-				levelArr[arkasi.y] = updateRow(levelArr[arkasi.y], arkasi.x, arkaSon);
-				levelArr[finalY] = updateRow(levelArr[finalY], finalX, "0");
-			}
-		}
-
-		return Object.assign({}, state, {
-			level: levelArr.join('\n'),
-			playerX: finalX,
-			playerY: finalY
-		});
-	}
-
-	return state;
-}
-
-function updateRow(row, index, newValue) {
-	return row.substring(0, index) + newValue + row.substring(index + 1, row.length);
-}
-
+// save state in state-history
 function pushState(state) {
-	appStates = appStates.splice(0, stateIndex + 1);
+	appStates = appStates.splice(0, ++stateIndex);
 	appStates.push(state);
-	stateIndex++;
 }
 
-_react2['default'].render(_react2['default'].createElement(
-	_reactRedux.Provider,
-	{ store: store },
-	function () {
-		return _react2['default'].createElement(_jsComponentsGameContainer2['default'], null);
-	}
-), document.getElementById('content'));
+// initial render
+function render() {
+	_react2['default'].render(_react2['default'].createElement(
+		_reactRedux.Provider,
+		{ store: store },
+		function () {
+			return _react2['default'].createElement(_jsComponentsGameContainer2['default'], null);
+		}
+	), document.getElementById('content'));
+}
 
+// player movement
 window.addEventListener("keypress", function (e) {
 	switch (e.keyCode) {
 		case 97:
@@ -23467,8 +23703,22 @@ window.addEventListener("keypress", function (e) {
 	}
 });
 
+// load resources (images)
+_jsResourceLoader2['default'].loadImages({
+	box: "images/box.png",
+	pad: "images/pad.png",
+	box_done: "images/box_done.png",
+	wall: "images/wall.png",
+	player: "images/player.png",
+	empty: "images/empty.png"
+}, function () {
+	initialState = _jsLevelLoader2['default'].getNextLevel();
+	store = (0, _redux.createStore)(reactSokoban, initialState);
+	render();
+});
 
-},{"./js/Components/GameContainer":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/Components/GameContainer.js","react":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/node_modules/react/react.js","react-redux":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/node_modules/react-redux/lib/index.js","redux":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/node_modules/redux/lib/index.js"}]},{},["/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/main.js"])
+
+},{"./js/Components/GameContainer":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/Components/GameContainer.js","./js/levelLoader":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/levelLoader.js","./js/levelManager":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/levelManager.js","./js/resourceLoader":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/js/resourceLoader.js","react":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/node_modules/react/react.js","react-redux":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/node_modules/react-redux/lib/index.js","redux":"/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/node_modules/redux/lib/index.js"}]},{},["/Users/evox/Google Drive/yortuc/side projects/ReactGameEngine/src/main.js"])
 
 
 //# sourceMappingURL=bundle.js.map
