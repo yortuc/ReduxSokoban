@@ -62,9 +62,9 @@ class SokobanGame extends Component {
         		<Game width={map.width} height={map.height}>
                     { map.tiles }
                 </Game>
-                <button onClick={this.handleUndo.bind(this)}>
-                    Undo
-                </button>
+                <div className="buttonHolder"> 
+                    <button onClick={this.handleUndo.bind(this)}>Undo</button>
+                </div>
             </div>
     	)
     } 

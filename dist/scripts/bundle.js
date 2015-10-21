@@ -23083,9 +23083,14 @@ var Game = (function (_Component) {
     }, {
         key: "render",
         value: function render() {
+            var style = {
+                marginLeft: -Math.floor(this.props.width / 2),
+                marginTop: -Math.floor(this.props.height / 2)
+            };
+
             return _reactAddons2["default"].createElement(
                 "canvas",
-                { id: "game", width: this.props.width, height: this.props.height },
+                { id: "game", width: this.props.width, height: this.props.height, style: style },
                 this.state.ctx ? this.mapChildren() : []
             );
         }
@@ -23340,9 +23345,13 @@ var SokobanGame = (function (_Component) {
                     map.tiles
                 ),
                 _react2['default'].createElement(
-                    'button',
-                    { onClick: this.handleUndo.bind(this) },
-                    'Undo'
+                    'div',
+                    { className: 'buttonHolder' },
+                    _react2['default'].createElement(
+                        'button',
+                        { onClick: this.handleUndo.bind(this) },
+                        'Undo'
+                    )
                 )
             );
         }

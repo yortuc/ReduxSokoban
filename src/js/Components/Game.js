@@ -30,8 +30,13 @@ class Game extends Component {
     }
 
     render() {
+        var style={
+            marginLeft: -Math.floor(this.props.width/2),
+            marginTop: -Math.floor(this.props.height/2)
+        };
+
     	return (
-    		<canvas id="game" width={this.props.width} height={this.props.height}>
+    		<canvas id="game" width={this.props.width} height={this.props.height} style={style}>
                 { this.state.ctx ? this.mapChildren() : []}
             </canvas>
     	)
